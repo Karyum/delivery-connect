@@ -2,13 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
+import Colors from '../constants/Colors'
 
 export default function BigButton(props) {
   const styles = StyleSheet.create({
     button: {
       width: 250,
       height: 250,
-      backgroundColor: '#04052E',
+      backgroundColor: Colors.darkBlueBackground,
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 125,

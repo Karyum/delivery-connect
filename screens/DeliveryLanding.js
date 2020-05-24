@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import BigButton from '../components/BigButton'
+import Colors from '../constants/Colors'
 
 export default function DeliveryLanding() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome delivery person</Text>
-      <BigButton borderColor="#3772FF" />
+      <BigButton borderColor={Colors.mainDeliveryColor} />
     </View>
   );
 }
@@ -17,10 +18,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#272223',
+    backgroundColor: Colors.spaceBlackBackground,
   },
   title: {
-    color: '#B9A6CB',
+    color: Colors.lightText,
     fontSize: 25,
     marginBottom: 100 
   }

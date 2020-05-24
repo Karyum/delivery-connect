@@ -12,10 +12,12 @@ export default {
   noticeBackground: tintColor,
   noticeText: '#fff',
   mainDeliveryColor: '#3772FF',
-  blackBackground: '#272223',
+  spaceBlackBackground: '#272223',
   darkBlueBackground: '#04052E',
   mainOwnerColor: '#612CAD',
-  curiousOrange: '#F15025'
+  curiousOrange: '#F15025',
+  lightText: '#B9A6CB',
+  input: '#FDF0FE'
 };
 
 

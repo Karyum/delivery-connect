@@ -35,7 +35,7 @@ export default function useCachedResources() {
     loadResourcesAndDataAsync();
   }, []);
 
-  return [isLoadingComplete, {type: 'deliver'}];
+  return [isLoadingComplete, {type: ''}];
 }
 
 
