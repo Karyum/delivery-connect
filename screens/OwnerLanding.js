@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   title: {
     color: Colors.lightText,
     fontSize: 25,
-    marginBottom: 100 
+    marginBottom: 100,
+    fontFamily: 'space-mono'
   }
 });

@@ -22,7 +22,7 @@ export default function BigButton(props) {
   return (
       <Button
         buttonStyle={styles.button}
-        titleProps={{ style: { fontSize: 30, color: 'white' } }}
+        titleProps={{ style: { fontSize: 30, color: 'white', fontFamily: 'space-mono' } }}
         title="Order"
       />
   );
