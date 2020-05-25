@@ -9,5 +9,11 @@ export default {
         ManagerLanding: 'ManagerLanding',
       },
     },
+    ManagerMapView: {
+      path: 'manager-map',
+      screens: {
+        ManagerMapView: 'ManagerMapView',
+      },
+    },
   },
 };

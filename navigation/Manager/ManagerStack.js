@@ -3,33 +3,51 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ManagerLanding from '../../screens/ManagerLanding';
+import ManagerMapView from '../../screens/ManagerMapView';
+import { TransitionPresets } from '@react-navigation/stack';
+import { View } from 'react-native';
 
-import Colors from '../../constants/Colors'
+import Colors from '../../constants/Colors';
 
 const Stack = createStackNavigator();
 
-import ManagerLinkConf from './ManagerLinkConf'
+import ManagerLinkConf from './ManagerLinkConf';
 
 export default function DeliveryStack() {
-    return (
-        <NavigationContainer linking={ManagerLinkConf}>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="StartSession"
-            options={{
-              headerStyle: {
-                backgroundColor: Colors.mainManagerColor,
-                height: 80
-              },
-              headerTitleStyle: {
-                color: 'white',
-                alignSelf: 'center'
-              },
-              title: 'Delivery connect'
-            }}
-            component={ManagerLanding}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    )
+  const commonScreenOptions = {
+    headerStyle: {
+      backgroundColor: Colors.mainManagerColor,
+      height: 80,
+    },
+    headerTitleStyle: {
+      color: 'white',
+      alignSelf: 'center',
+    },
+    title: 'Delivery connect',
+    ...TransitionPresets.SlideFromRightIOS,
+    headerLeft: null
+  };
+
+  return (
+    <NavigationContainer linking={ManagerLinkConf}>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="StartSession"
+          options={{
+            ...commonScreenOptions,
+          }}
+          component={ManagerLanding}
+        />
+
+        <Stack.Screen
+          name="ManagerMapView"
+          options={{
+            ...commonScreenOptions,
+            headerShown: false
+          }}
+          component={ManagerMapView}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }

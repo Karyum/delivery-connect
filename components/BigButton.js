@@ -23,6 +23,7 @@ export default function BigButton(props) {
       <Button
         buttonStyle={styles.button}
         titleProps={{ style: { fontSize: 30, color: 'white', fontFamily: 'space-mono' } }}
+        onPress={props.onPress}
         title="Order"
       />
   );

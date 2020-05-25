@@ -5,6 +5,7 @@ import * as React from 'react';
 import { AsyncStorage } from 'react-native';
 
 import { deviceDataStorageKey } from '../constants/storageKeys';
+
 export default function useCachedResources() {
   const [dataLoad, setDataLoad] = React.useState({
     isLoadingComplete: false,
@@ -25,6 +26,7 @@ export default function useCachedResources() {
           'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
         });
 
+        // for development purposes
         // AsyncStorage.clear();
 
         // for authentication
