@@ -5,7 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ManagerLanding from '../../screens/ManagerLanding';
 import ManagerMapView from '../../screens/ManagerMapView';
 import { TransitionPresets } from '@react-navigation/stack';
-import { View } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
