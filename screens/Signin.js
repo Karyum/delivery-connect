@@ -1,43 +1,46 @@
 import * as React from 'react';
-import { Text, TextInput, View, StyleSheet, Platform, StatusBar } from 'react-native';
+import {
+  Text,
+  TextInput,
+  View,
+  StyleSheet,
+  Platform,
+  StatusBar,
+} from 'react-native';
 import { Button } from 'react-native-elements';
 import { Api } from '../utils';
 
 import Colors from '../constants/Colors';
 
-export default function Signin() {
+export default function Signin({ setUserData }) {
   const [phone, setphone] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [error, setError] = React.useState('')
+  const [error, setError] = React.useState('');
 
   const onLogin = async () => {
     try {
       // the axios intercepter will handle saving the data into
       // AsyncStorage
-      const {data} = await Api.post('/auth/authenticate', {
-        phone, password
-      })
+      const { data } = await Api.post('/auth/authenticate', {
+        phone,
+        password,
+      });
 
-      if (data.user.role === 'delivery') {
-        return this.props.na
-      }
+      setUserData({ status: true, user: data.user });
 
-      if (data.user.role === 'manager') {
-        return this.props.na
-      }
-      
-    } catch(err) {
-      setError(err.message)
+      // setError('');
+    } catch (err) {
+      setError(err.message);
     }
   };
 
   return (
     <View style={styles.container}>
-        {Platform.OS === 'ios' ? (
-          <StatusBar barStyle="dark-content" />
-        ) : (
-          <StatusBar barStyle="light-content" />
-        )}
+      {Platform.OS === 'ios' ? (
+        <StatusBar barStyle="dark-content" />
+      ) : (
+        <StatusBar barStyle="light-content" />
+      )}
 
       <TextInput
         value={phone}
@@ -104,5 +107,5 @@ const styles = StyleSheet.create({
   error: {
     color: '#F15025',
     fontSize: 18,
-  }
+  },
 });

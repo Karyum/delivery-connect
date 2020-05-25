@@ -55,13 +55,14 @@ export const authenticateRequest = (axiosInstance, { token, user }) => {
 export const interceptAuthenticationFlow = (axiosInstance) => {
   axiosInstance.interceptors.response.use(
     async (response) => {
+      
       const { token, user, status, userAuthentication } = response.data;
-
-      if (response.request.url === '/auth/authenticate') {
-
+      
+      if (response.config.url === '/auth/authenticate') {
         // save the following data in the AsyncStorage as deviceData
-        if (userAuthentication && user && token && status === 'status') {
-            try {
+        if (userAuthentication && user && token && status === 'success') {
+
+          try {
                 await saveToStorage(deviceDataStorageKey, { token, user });
             }catch (error) {
                 return Promise.reject(new Error('Something went wrong'));

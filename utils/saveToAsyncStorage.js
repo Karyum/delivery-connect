@@ -5,7 +5,7 @@ export default (storageKey, data) => {
 
   return new Promise(async (resolve, reject) => {
     try {
-        await AsyncStorage(storageKey, stringifiedData)
+        await AsyncStorage.setItem(storageKey, stringifiedData)
 
         resolve(true);
     } catch (error) {
