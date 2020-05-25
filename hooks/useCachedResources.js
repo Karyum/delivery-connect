@@ -21,7 +21,7 @@ export default function useCachedResources() {
 
         // for authentication
         // https://medium.com/better-programming/how-to-add-authentication-to-your-react-native-app-with-react-hooks-and-react-context-api-46f57aedbbd
-        // const userType = await AsyncStorage.getItem('userType');
+        // const userType = await AsyncStorage.getItem('deviceData');
 
       } catch (e) {
         // We might want to provide this error information to an error reporting service

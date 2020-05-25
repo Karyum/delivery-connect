@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import DeliveryStack from './navigation/Delivery/DeliveryStack'
-import OwnerStack from './navigation/Owner/OwnerStack'
+import ManagerStack from './navigation/Manager/ManagerStack'
 
 import useCachedResources from './hooks/useCachedResources';
 import Signin from './screens/Signin';
@@ -22,7 +22,7 @@ export default function App(props) {
           <StatusBar barStyle="default" />
         )}
 
-        {userData.type === 'owner' ? <OwnerStack /> : <DeliveryStack />}
+        {userData.type === 'manager' ? <ManagerStack /> : <DeliveryStack />}
       </View>
     );
   }

@@ -14,7 +14,7 @@ export default {
   mainDeliveryColor: '#3772FF',
   spaceBlackBackground: '#272223',
   darkBlueBackground: '#04052E',
-  mainOwnerColor: '#612CAD',
+  mainManagerColor: '#612CAD',
   curiousOrange: '#F15025',
   lightText: '#B9A6CB',
   input: '#FDF0FE'

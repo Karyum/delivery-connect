@@ -3,11 +3,11 @@ import { StyleSheet, Text, View } from 'react-native';
 import BigButton from '../components/BigButton'
 import Colors from '../constants/Colors'
 
-export default function OwnerLanding() {
+export default function ManagerLanding() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome business owner</Text>
-      <BigButton borderColor={Colors.mainOwnerColor} />
+      <Text style={styles.title}>Welcome business manager</Text>
+      <BigButton borderColor={Colors.mainManagerColor} />
     </View>
   );
 }

@@ -2,23 +2,23 @@ import * as React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import OwnerLanding from '../../screens/OwnerLanding';
+import ManagerLanding from '../../screens/ManagerLanding';
 
 import Colors from '../../constants/Colors'
 
 const Stack = createStackNavigator();
 
-import OwnerLinkConf from './OwnerLinkConf'
+import ManagerLinkConf from './ManagerLinkConf'
 
 export default function DeliveryStack() {
     return (
-        <NavigationContainer linking={OwnerLinkConf}>
+        <NavigationContainer linking={ManagerLinkConf}>
         <Stack.Navigator>
           <Stack.Screen
             name="StartSession"
             options={{
               headerStyle: {
-                backgroundColor: Colors.mainOwnerColor,
+                backgroundColor: Colors.mainManagerColor,
                 height: 80
               },
               headerTitleStyle: {
@@ -27,7 +27,7 @@ export default function DeliveryStack() {
               },
               title: 'Delivery connect'
             }}
-            component={OwnerLanding}
+            component={ManagerLanding}
           />
         </Stack.Navigator>
       </NavigationContainer>

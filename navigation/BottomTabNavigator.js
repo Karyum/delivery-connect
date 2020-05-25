@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 // import HomeScreen from '../screens/HomeScreen';
-import OwnerLanding from '../screens/OwnerLanding';
+import ManagerLanding from '../screens/ManagerLanding';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -22,7 +22,7 @@ export default function BottomTabNavigator({ navigation, route }) {
     >
       <BottomTab.Screen
         name="Home"
-        component={OwnerLanding}
+        component={ManagerLanding}
 />
       {/* <BottomTab.Screen
         name="Links"

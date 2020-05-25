@@ -1,25 +1,51 @@
 import * as React from 'react';
-import { Alert, TextInput, View, StyleSheet } from 'react-native';
+import { Text, TextInput, View, StyleSheet, Platform, StatusBar } from 'react-native';
 import { Button } from 'react-native-elements';
+import { Api } from '../utils';
 
 import Colors from '../constants/Colors';
 
 export default function Signin() {
-  const [username, setUsername] = React.useState('');
+  const [phone, setphone] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState('')
 
-  const onLogin = () => {
-    Alert.alert('Credentials', `${username} + ${password}`);
+  const onLogin = async () => {
+    try {
+      // the axios intercepter will handle saving the data into
+      // AsyncStorage
+      const {data} = await Api.post('/auth/authenticate', {
+        phone, password
+      })
+
+      if (data.user.role === 'delivery') {
+        return this.props.na
+      }
+
+      if (data.user.role === 'manager') {
+        return this.props.na
+      }
+      
+    } catch(err) {
+      setError(err.message)
+    }
   };
 
   return (
     <View style={styles.container}>
+        {Platform.OS === 'ios' ? (
+          <StatusBar barStyle="dark-content" />
+        ) : (
+          <StatusBar barStyle="light-content" />
+        )}
+
       <TextInput
-        value={username}
-        onChangeText={setUsername}
-        placeholder="Username"
+        value={phone}
+        onChangeText={setphone}
+        placeholder="phone"
         style={styles.input}
         placeholderTextColor={Colors.spaceBlackBackground}
+        keyboardType="phone-pad"
       />
       <TextInput
         value={password}
@@ -38,6 +64,7 @@ export default function Signin() {
         }}
         onPress={onLogin}
       />
+      <Text style={styles.error}>{error}</Text>
     </View>
   );
 }
@@ -59,7 +86,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: Colors.input,
     color: Colors.spaceBlackBackground,
-    fontSize: 18
+    fontSize: 18,
   },
   submit: {
     paddingHorizontal: 50,
@@ -68,5 +95,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 5,
   },
-  buttonText: { fontWeight: 'bold', color: 'white', fontFamily: 'space-mono', fontSize: 20 },
+  buttonText: {
+    fontWeight: 'bold',
+    color: 'white',
+    fontFamily: 'space-mono',
+    fontSize: 20,
+  },
+  error: {
+    color: '#F15025',
+    fontSize: 18,
+  }
 });
