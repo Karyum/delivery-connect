@@ -2,10 +2,8 @@ import React from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
-import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import { Ionicons } from '@expo/vector-icons';
-import MOTORBIKE_ICON from '../assets/icons/delivery.svg';
-import Svg from 'react-native-svg';
+import Marker from './Marker'
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 export default function ManagerMapView() {
   const deg2rad = (angle) => {
@@ -170,14 +168,7 @@ export default function ManagerMapView() {
           latitudeDelta,
         }}
       >
-        <Marker
-          coordinate={{
-            latitude: 32.8237073,
-            longitude: 34.9750746,
-          }}
-          key={1}
-          image={require('../assets/icons/delivery.png')}
-        />
+        <Marker />
       </MapView>
     </View>
   );

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import saveToStorage from './saveToAsyncStorage';
 import { deviceDataStorageKey } from '../constants/storageKeys';
-import ENV from '../constants/apiUrl';
+import ENV from '../constants/env';
 import { AsyncStorage } from "react-native";
 
 // This variable decides whether the error should console log
@@ -77,6 +77,7 @@ export const interceptAuthenticationFlow = (axiosInstance) => {
       return response;
     },
     (error) => {
+      console.log(error)
         if (error.response.status === 401) {
             return Promise.reject(new Error('Not authorized'));
         }
@@ -91,6 +92,7 @@ export const interceptAuthenticationFlow = (axiosInstance) => {
 
 
 interceptAuthenticationFlow(apiInstance)
+
 configureAuthentication(apiInstance)
 
 export default apiInstance
