@@ -57,6 +57,7 @@ export default function Signin({ setUserData }) {
         secureTextEntry={true}
         style={styles.input}
         placeholderTextColor={Colors.spaceBlackBackground}
+        keyboardType="phone-pad"
       />
 
       <Button

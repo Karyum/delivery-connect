@@ -9,5 +9,11 @@ export default {
         DeliveryLanding: 'DeliveryLanding',
       },
     },
+    DeliveryMapView: {
+      path: 'delivery-map',
+      screens: {
+        DeliveryMapView: 'DeliveryMapView',
+      },
+    },
   },
 };

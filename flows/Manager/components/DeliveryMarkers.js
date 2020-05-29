@@ -4,7 +4,7 @@ import ENV from '../constants/env';
 
 const io = require('socket.io-client');
 
-export default function ManagerMapView() {
+export default function DeliveryMarkers() {
   const [connected, setConnected] = React.useState(false);
   const [locationState, setLocationState] = React.useState({
     current: {

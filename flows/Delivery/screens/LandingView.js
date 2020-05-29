@@ -1,13 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import BigButton from '../components/BigButton'
-import Colors from '../constants/Colors'
+import BigButton from '../components/BigButton';
+import Colors from '../constants/Colors';
 
-export default function DeliveryLanding() {
+export default function DeliveryLanding({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome delivery person</Text>
-      <BigButton borderColor={Colors.mainDeliveryColor} />
+      <BigButton
+        onPress={() => navigation.push('DeliveryMapView')}
+        borderColor={Colors.mainDeliveryColor}
+      />
     </View>
   );
 }
@@ -24,6 +27,6 @@ const styles = StyleSheet.create({
     color: Colors.lightText,
     fontSize: 25,
     marginBottom: 100,
-    fontFamily: 'space-mono'
-  }
+    fontFamily: 'space-mono',
+  },
 });

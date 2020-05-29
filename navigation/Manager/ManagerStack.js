@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ManagerLanding from '../../screens/ManagerLanding';
-import ManagerMapView from '../../screens/ManagerMapView';
+import LandingView from '../../flows/Manager/screens/LandingView';
+import MapView from '../../flows/Manager/screens/MapView';
 import { TransitionPresets } from '@react-navigation/stack';
 
 import Colors from '../../constants/Colors';
@@ -35,7 +35,7 @@ export default function DeliveryStack() {
           options={{
             ...commonScreenOptions,
           }}
-          component={ManagerLanding}
+          component={LandingView}
         />
 
         <Stack.Screen
@@ -44,7 +44,7 @@ export default function DeliveryStack() {
             ...commonScreenOptions,
             headerShown: false
           }}
-          component={ManagerMapView}
+          component={MapView}
         />
       </Stack.Navigator>
     </NavigationContainer>
