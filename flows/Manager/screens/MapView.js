@@ -1,9 +1,8 @@
 import React from 'react';
 import { StyleSheet, Image, View } from 'react-native';
-import Colors from '../constants/Colors';
-import Layout from '../constants/Layout';
-import DeliveryMarkers from './DeliveryMarkers';
-import Map from './Map';
+
+import DeliveryMarkers from '../components/DeliveryMarkers';
+import Map from '../../../components/Map/ManagerMap';
 
 export default function ManagerMapView() {
 

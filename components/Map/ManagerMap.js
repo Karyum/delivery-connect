@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Image, View } from 'react-native';
-import Colors from '../constants/Colors';
-import Layout from '../constants/Layout';
+import Colors from '../../constants/Colors';
+import Layout from '../../constants/Layout';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import mapStyle from './mapStyle'
 import {useDelta} from './mapUtils'

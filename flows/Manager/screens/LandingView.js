@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import BigButton from '../components/BigButton';
-import Colors from '../constants/Colors';
+import BigButton from '../../../components/BigButton';
+import Colors from '../../../constants/Colors';
 
 export default function ManagerLanding({ navigation }) {
 

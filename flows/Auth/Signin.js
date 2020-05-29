@@ -8,9 +8,9 @@ import {
   StatusBar,
 } from 'react-native';
 import { Button } from 'react-native-elements';
-import { Api } from '../utils';
+import { Api } from '../../utils';
+import Colors from '../../constants/Colors';
 
-import Colors from '../constants/Colors';
 
 export default function Signin({ setUserData }) {
   const [phone, setphone] = React.useState('');

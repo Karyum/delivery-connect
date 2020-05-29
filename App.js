@@ -5,7 +5,7 @@ import DeliveryStack from './navigation/Delivery/DeliveryStack';
 import ManagerStack from './navigation/Manager/ManagerStack';
 
 import useCachedResources from './hooks/useCachedResources';
-import Signin from './screens/Signin';
+import Signin from './flows/Auth/Signin';
 
 export default function App() {
   const [{ isLoadingComplete, userData }] = useCachedResources();

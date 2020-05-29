@@ -1,6 +1,6 @@
 import React from 'react';
 import { Marker } from 'react-native-maps';
-import ENV from '../constants/env';
+import ENV from '../../../constants/env';
 
 const io = require('socket.io-client');
 
@@ -104,7 +104,7 @@ export default function DeliveryMarkers() {
         longitude: currentLocation.longitude,
       }}
       key={1}
-      image={require('../assets/icons/delivery.png')}
+      image={require('../../../assets/icons/delivery.png')}
     />
   );
 }
