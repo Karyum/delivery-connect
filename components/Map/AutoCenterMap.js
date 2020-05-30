@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image, View } from 'react-native';
+import { StyleSheet, Image, View, Dimensions } from 'react-native';
 import Colors from '@constants/Colors';
 import Layout from '@constants/Layout';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
@@ -7,6 +7,7 @@ import mapStyle from './mapStyle';
 import { useDelta } from './mapUtils';
 import * as Location from 'expo-location';
 import ENV from '@constants/env';
+
 const io = require('socket.io-client');
 
 export default function AutoCenterMap({ children, lat, lng }) {
@@ -20,14 +21,12 @@ export default function AutoCenterMap({ children, lat, lng }) {
     const socket = io(ENV.apiUrl, {
       // transports: ['websocket'],
       query: {
-        id: 1
+        id: 1,
       },
       forceNode: true,
     });
 
-    socket.on('connect', () => {
-
-    });
+    socket.on('connect', () => {});
 
     const positionWatch = Location.watchPositionAsync(
       { distanceInterval: 1 },
@@ -63,6 +62,9 @@ export default function AutoCenterMap({ children, lat, lng }) {
           latitude: userLocation.latitude,
           longitude: userLocation.longitude,
         }}
+        style={{
+          zIndex: 999999999999999999
+        }}
         key={1}
         image={require('../../assets/icons/delivery.png')}
       />
@@ -73,5 +75,8 @@ export default function AutoCenterMap({ children, lat, lng }) {
 const styles = StyleSheet.create({
   mapStyle: {
     ...Layout.window,
+  },
+  pulse: {
+    // borderRadius: Dimensions.get('window').width / 2
   },
 });

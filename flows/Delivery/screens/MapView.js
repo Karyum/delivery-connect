@@ -1,10 +1,10 @@
 import React from 'react';
 import * as Location from 'expo-location';
-// import Marker from './MyMarker';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text, Dimensions } from 'react-native';
 import Map from '@components/Map/AutoCenterMap';
-import Colors from '@constants/Colors'
+import Colors from '@constants/Colors';
 import Layout from '@constants/Layout';
+import Pulse from '@components/Map/Pulse'
 
 export default function DeliveryMapView() {
   const [userLocation, setUserLocation] = React.useState({});
@@ -16,7 +16,7 @@ export default function DeliveryMapView() {
       if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied');
       }
-      console.log(status)
+      console.log(status);
       let location = await Location.getCurrentPositionAsync({});
 
       setUserLocation(location.coords);
@@ -33,20 +33,36 @@ export default function DeliveryMapView() {
   // 2) show a popup that it's searching for deliveries
   // 3) show some sort of animation that it is searching
   return (
-    <View>
+    <View style={styles.mainMapContainer}>
       <Map lat={userLocation.latitude} lng={userLocation.longitude} />
-      {/* <View style={styles.box}></View> */}
+      <View style={styles.box}>
+        <Text style={styles.searchingText}>Searching...</Text>
+      </View>
+
+      <Pulse color='orange' numPulses={3} diameter={400} speed={20} duration={2000} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   mainMapContainer: {
-    ...Layout.window
+    ...Layout.window,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   box: {
     backgroundColor: Colors.spaceBlackBackground,
-    opacity: 0.3,
-    position: 'absolute'
-  }
-})
+    opacity: 0.75,
+    position: 'absolute',
+    bottom: 40,
+    width: Dimensions.get('window').width * 0.8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+
+  },
+  searchingText: {
+    padding: 30,
+    color: 'white'
+  },
+});
