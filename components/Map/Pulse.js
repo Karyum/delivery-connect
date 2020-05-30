@@ -167,7 +167,7 @@ export default class Pulse extends Component {
                     borderRadius: pulse.diameter / 2,
                     top: pulse.centerOffset,
                     left: pulse.centerOffset,
-                    opacity: 0.2,
+                    opacity: 0.03,
 
                   },
                   pulseStyle,

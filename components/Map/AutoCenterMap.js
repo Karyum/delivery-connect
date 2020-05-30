@@ -63,7 +63,7 @@ export default function AutoCenterMap({ children, lat, lng }) {
           longitude: userLocation.longitude,
         }}
         style={{
-          zIndex: 999999999999999999
+          zIndex: 99999
         }}
         key={1}
         image={require('../../assets/icons/delivery.png')}

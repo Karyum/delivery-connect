@@ -4,11 +4,15 @@ import { View, StyleSheet, Text, Dimensions } from 'react-native';
 import Map from '@components/Map/AutoCenterMap';
 import Colors from '@constants/Colors';
 import Layout from '@constants/Layout';
-import Pulse from '@components/Map/Pulse'
+import Pulse from '@components/Map/Pulse';
 
 export default function DeliveryMapView() {
   const [userLocation, setUserLocation] = React.useState({});
 
+  // refreshes the entire app
+  // global.__r.Refresh.performFullRefresh()
+  
+  
   React.useEffect(() => {
     (async () => {
       let { status } = await Location.requestPermissionsAsync();
@@ -39,7 +43,13 @@ export default function DeliveryMapView() {
         <Text style={styles.searchingText}>Searching...</Text>
       </View>
 
-      <Pulse color='orange' numPulses={3} diameter={400} speed={20} duration={2000} />
+      <Pulse
+        color='white'
+        numPulses={4}
+        diameter={500}
+        speed={20}
+        duration={2000}
+      />
     </View>
   );
 }
@@ -48,7 +58,7 @@ const styles = StyleSheet.create({
   mainMapContainer: {
     ...Layout.window,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   box: {
     backgroundColor: Colors.spaceBlackBackground,
@@ -59,10 +69,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
-
   },
   searchingText: {
     padding: 30,
-    color: 'white'
+    color: 'white',
   },
 });
