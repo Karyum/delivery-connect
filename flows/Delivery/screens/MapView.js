@@ -1,7 +1,10 @@
 import React from 'react';
 import * as Location from 'expo-location';
 // import Marker from './MyMarker';
-import Map from '../../../components/Map/AutoCenterMap';
+import { View, StyleSheet } from 'react-native';
+import Map from '@components/Map/AutoCenterMap';
+import Colors from '@constants/Colors'
+import Layout from '@constants/Layout';
 
 export default function DeliveryMapView() {
   const [userLocation, setUserLocation] = React.useState({});
@@ -13,7 +16,7 @@ export default function DeliveryMapView() {
       if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied');
       }
-
+      console.log(status)
       let location = await Location.getCurrentPositionAsync({});
 
       setUserLocation(location.coords);
@@ -29,5 +32,21 @@ export default function DeliveryMapView() {
   // 1) send to the socket the location for the user
   // 2) show a popup that it's searching for deliveries
   // 3) show some sort of animation that it is searching
-  return <Map lat={userLocation.latitude} lng={userLocation.longitude} />;
+  return (
+    <View>
+      <Map lat={userLocation.latitude} lng={userLocation.longitude} />
+      {/* <View style={styles.box}></View> */}
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  mainMapContainer: {
+    ...Layout.window
+  },
+  box: {
+    backgroundColor: Colors.spaceBlackBackground,
+    opacity: 0.3,
+    position: 'absolute'
+  }
+})
