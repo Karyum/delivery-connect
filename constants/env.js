@@ -4,7 +4,7 @@ export const prodUrl = "";
 
 const ENV = {
   dev: {
-    apiUrl: "http://192.168.1.117:8000"
+    apiUrl: "http://192.168.1.157:8000"
   },
   staging: {
     apiUrl: prodUrl

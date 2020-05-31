@@ -31,18 +31,12 @@ export default function DeliveryMapView() {
     return <Map lat={32.8237073} lng={34.9750746} />;
   }
 
-  // so we got the map that following and watching the user location
-  // now we need to do 3 things
-  // 1) send to the socket the location for the user
-  // 2) show a popup that it's searching for deliveries
-  // 3) show some sort of animation that it is searching
   return (
-    <View style={styles.mainMapContainer}>
+    <View style={styles.mainMapContainer} pointerEvents="none">
       <Map lat={userLocation.latitude} lng={userLocation.longitude} />
       <View style={styles.box}>
         <Text style={styles.searchingText}>Searching...</Text>
       </View>
-
       <Pulse
         color='white'
         numPulses={4}
@@ -50,6 +44,7 @@ export default function DeliveryMapView() {
         speed={20}
         duration={2000}
       />
+
     </View>
   );
 }
@@ -57,8 +52,6 @@ export default function DeliveryMapView() {
 const styles = StyleSheet.create({
   mainMapContainer: {
     ...Layout.window,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   box: {
     backgroundColor: Colors.spaceBlackBackground,
@@ -68,6 +61,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width * 0.8,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     borderRadius: 5,
   },
   searchingText: {

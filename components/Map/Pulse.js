@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    left: 0,
-    right: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1,
-  },
+    width: 50,
+    height: 50,
+    marginTop: Dimensions.get('window').height / 2 - 40, 
+    alignSelf: 'center',
+},
   pulse: {
     position: 'absolute',
     flex: 1,
