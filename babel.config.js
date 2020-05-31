@@ -13,6 +13,7 @@ module.exports = function (api) {
             // lib: './src/lib',
             // types: './src/types',
             '@constants': './constants',
+            '@utils': './utils',
             '@flows': './flows'
           },
         },

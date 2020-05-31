@@ -4,31 +4,31 @@ import ENV from '../../../constants/env';
 
 const io = require('socket.io-client');
 
-export default function DeliveryMarkers() {
+export default function DeliveryMarkers({ coords }) {
   const [connected, setConnected] = React.useState(false);
   const [locationState, setLocationState] = React.useState({
     current: {
-        toggle: false,
-        latitude: 32.8237073,
-        longitude: 34.9750746,
-      },
-      past: {
-        longitude: 34.981582,
-        latitude: 32.821673,
-      },
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+    },
+    past: {
+      longitude: 34.981582,
+      latitude: 32.821673,
+    },
   });
   const [currentLocation, setCurrentLocation] = React.useState({
     latitude: 32.8237073,
     longitude: 34.9750746,
-  })
-
+  });
   // move marker from position current to moveto in t seconds
   function animatedMove(t, current, moveto) {
-      var lng = locationState.past.longitude;
-      var lat = locationState.past.latitude;
+    var lng = locationState.past.longitude;
+    var lat = locationState.past.latitude;
 
-    var deltalat = (locationState.current.latitude - locationState.past.latitude) / 100;
-    var deltalng = (locationState.current.longitude - locationState.past.longitude) / 100;
+    var deltalat =
+      (locationState.current.latitude - locationState.past.latitude) / 100;
+    var deltalng =
+      (locationState.current.longitude - locationState.past.longitude) / 100;
 
     var delay = 10 * t;
     for (var i = 0; i < 100; i++) {
@@ -36,65 +36,51 @@ export default function DeliveryMarkers() {
         setTimeout(function () {
           lat += deltalat;
           lng += deltalng;
-          
+
           setCurrentLocation({
-              latitude: lat,
-              longitude: lng
-          })
+            latitude: lat,
+            longitude: lng,
+          });
         }, delay * ind);
       })(i);
     }
   }
 
   React.useEffect(() => {
-
-    animatedMove(0.5)
-  }, [locationState])
+    animatedMove(0.5);
+  }, [locationState]);
 
   React.useEffect(() => {
     const socket = io(ENV.apiUrl, {
       // transports: ['websocket'],
       forceNode: true,
+      query: {
+        type: 'manager',
+        id: 1,
+      },
     });
 
-
-    socket.on('connect', () => {
+    socket.on('connect', function(test) {
       setConnected(true);
-      console.log(1)
+      console.log('test',this.on);
+  
     });
-
-    socket.on('ping', () => {
-
-      setLocationState((prevState) => {
-        if (!prevState.current.toggle) {
-          return {
+        socket.on('mario', (data) => {
+          console.log('mario', data);
+          setLocationState((prevState) => ({
             current: {
-              toggle: true,
-              longitude: 34.981582,
-              latitude: 32.821673,
+              latitude: data.latitude,
+              longitude: data.longitude,
             },
             past: {
-              latitude: 32.8237073,
-              longitude: 34.9750746,
+              latitude: prevState.current.latitude,
+              longitude: prevState.current.longitude,
             },
-          };
-        }
+          }));
+        });
 
-        return {
-          current: {
-            toggle: false,
-            latitude: 32.8237073,
-            longitude: 34.9750746,
-          },
-          past: {
-            longitude: 34.981582,
-            latitude: 32.821673,
-          },
-        };
-      });
-    });
 
-    return () => socket.close()
+    return () => socket.disconnect();
   }, []);
 
   return (
@@ -104,6 +90,10 @@ export default function DeliveryMarkers() {
         longitude: currentLocation.longitude,
       }}
       key={1}
+      style={{
+        width: 40,
+        height: 40,
+      }}
       image={require('../../../assets/icons/delivery.png')}
     />
   );

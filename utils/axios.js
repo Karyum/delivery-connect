@@ -37,6 +37,7 @@ export const configureAuthentication = async (axiosInstance) => {
 export const authenticateRequest = (axiosInstance, { token, user }) => {
   axiosInstance.interceptors.request.use(
     (config) => {
+      console.log(config.data)
       config.data.token = token;
       config.deviceId = user.deviceId;
 
@@ -77,12 +78,11 @@ export const interceptAuthenticationFlow = (axiosInstance) => {
       return response;
     },
     (error) => {
-      console.log(error)
-        if (error.response.status === 401) {
+      console.log(1, error)
+        if (error.response && error.response.status === 401) {
             return Promise.reject(new Error('Not authorized'));
         }
 
-        error.response.status
         if (DEBUG) console.log('interceptAuthenticationFlow Error: ', error);
 
       return Promise.reject(new Error('Something went wrong'));

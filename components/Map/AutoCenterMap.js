@@ -21,6 +21,7 @@ export default function AutoCenterMap({ children, lat, lng }) {
     const socket = io(ENV.apiUrl, {
       // transports: ['websocket'],
       query: {
+        type: 'delivery',
         id: 1,
       },
       forceNode: true,
@@ -31,11 +32,14 @@ export default function AutoCenterMap({ children, lat, lng }) {
     const positionWatch = Location.watchPositionAsync(
       { distanceInterval: 1 },
       ({ coords }) => {
-        socket.emit('locationChange', { data: coords }, console.log);
+        console.log('changed', coords)
+        socket.emit('locationChange', { data: coords });
 
         setUserLocation(coords);
       }
     );
+
+    // socket.on('ping', (data) => console.log('delivery', data))
 
     return () => {
       socket.close();

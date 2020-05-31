@@ -21,8 +21,8 @@ export default function ManagerMap({ children, lat, lng }) {
         region={{
           //   latitude: 32.8237073,
           //   longitude: 34.9750746,
-          latitude: lat,
-          longitude: lng,
+          latitude: 32.8237073,
+          longitude: 34.9750746,
           longitudeDelta: lngDelta,
           latitudeDelta: latDelta,
         }}

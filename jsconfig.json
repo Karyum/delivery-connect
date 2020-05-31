@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": "./",
+    "paths": {
+        "@assets": ["assets/*"],
+        "@components": ["components/*"],
+        // modules: ["src/*/]modules",
+        // lib: ["src/*/]lib",
+        // types: ["src/*/]types",
+        "@constants": ["constants/*"],
+        "@utils": ["utils/*"],
+        "@flows": ["flows/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
