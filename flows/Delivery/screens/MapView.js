@@ -11,19 +11,21 @@ export default function DeliveryMapView() {
 
   // refreshes the entire app
   // global.__r.Refresh.performFullRefresh()
-  
-  
+
   React.useEffect(() => {
     (async () => {
-      let { status } = await Location.requestPermissionsAsync();
+      try {
+        let { status } = await Location.requestPermissionsAsync();
+        await Location.enableNetworkProviderAsync()
 
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-      }
-      console.log(status);
-      let location = await Location.getCurrentPositionAsync({});
+        if (status !== 'granted') {
+          setErrorMsg('Permission to access location was denied');
+        }
+        console.log(status);
+        let location = await Location.getCurrentPositionAsync({});
 
-      setUserLocation(location.coords);
+        setUserLocation(location.coords);
+      } catch (error) {}
     })();
   }, []);
 
@@ -38,13 +40,12 @@ export default function DeliveryMapView() {
         <Text style={styles.searchingText}>Searching...</Text>
       </View>
       <Pulse
-        color='white'
+        color="white"
         numPulses={4}
         diameter={500}
         speed={20}
         duration={2000}
       />
-
     </View>
   );
 }

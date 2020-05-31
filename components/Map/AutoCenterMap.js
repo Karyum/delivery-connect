@@ -30,7 +30,7 @@ export default function AutoCenterMap({ children, lat, lng }) {
     socket.on('connect', () => {});
 
     const positionWatch = Location.watchPositionAsync(
-      { distanceInterval: 1, timeInterval: 2 },
+      { distanceInterval: 1, timeInterval: 2, accuracy: 6 },
       ({ coords }) => {
         console.log('changed', coords)
         socket.emit('locationChange', { data: coords });
