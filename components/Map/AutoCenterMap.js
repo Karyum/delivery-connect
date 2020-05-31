@@ -30,7 +30,7 @@ export default function AutoCenterMap({ children, lat, lng }) {
     socket.on('connect', () => {});
 
     const positionWatch = Location.watchPositionAsync(
-      { distanceInterval: 1 },
+      { distanceInterval: 1, timeInterval: 2 },
       ({ coords }) => {
         console.log('changed', coords)
         socket.emit('locationChange', { data: coords });
@@ -51,7 +51,7 @@ export default function AutoCenterMap({ children, lat, lng }) {
     <MapView
       provider={PROVIDER_GOOGLE}
       style={styles.mapStyle}
-      maxZoomLevel={22}
+      maxZoomLevel={23}
       minZoomLevel={18}
       customMapStyle={mapStyle}
       region={{

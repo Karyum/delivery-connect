@@ -60,25 +60,24 @@ export default function DeliveryMarkers({ coords }) {
       },
     });
 
-    socket.on('connect', function(test) {
-      setConnected(true);
-      console.log('test',this.on);
-  
+    socket.on('connect', function (test) {
+      // setConnected(true);
+      console.log('test', this.on);
     });
-        socket.on('mario', (data) => {
-          console.log('mario', data);
-          setLocationState((prevState) => ({
-            current: {
-              latitude: data.latitude,
-              longitude: data.longitude,
-            },
-            past: {
-              latitude: prevState.current.latitude,
-              longitude: prevState.current.longitude,
-            },
-          }));
-        });
-
+    socket.on('mario', (data) => {
+      console.log('mario', data);
+      // if ()
+      setLocationState((prevState) => ({
+        current: {
+          latitude: data.latitude,
+          longitude: data.longitude,
+        },
+        past: {
+          latitude: prevState.current.latitude,
+          longitude: prevState.current.longitude,
+        },
+      }));
+    });
 
     return () => socket.disconnect();
   }, []);
