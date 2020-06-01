@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
 
-export const prodUrl = "";
+export const prodUrl = "http://54.93.182.39:8000";
 
 const ENV = {
   dev: {
