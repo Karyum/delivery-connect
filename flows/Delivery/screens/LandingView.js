@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button, AsyncStorage } from 'react-native';
 import BigButton from '../../../components/BigButton';
 import Colors from '../../../constants/Colors';
 
@@ -10,6 +10,11 @@ export default function DeliveryLanding({ navigation }) {
       <BigButton
         onPress={() => navigation.push('DeliveryMapView')}
         borderColor={Colors.mainDeliveryColor}
+      />
+      <Button title="Clear cache" onPress={() => AsyncStorage.clear()} />
+      <Button
+        title="Refresh"
+        onPress={() => global.__r.Refresh.performFullRefresh()}
       />
     </View>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Image, View, Dimensions } from 'react-native';
-import Colors from '@constants/Colors';
+import { useKeepAwake } from 'expo-keep-awake';
 import Layout from '@constants/Layout';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import mapStyle from './mapStyle';
@@ -12,6 +12,8 @@ const io = require('socket.io-client');
 
 export default function AutoCenterMap({ children, lat, lng }) {
   const [lngDelta, latDelta] = useDelta();
+  useKeepAwake();
+
   const [userLocation, setUserLocation] = React.useState({
     latitude: lat,
     longitude: lng,
@@ -30,9 +32,8 @@ export default function AutoCenterMap({ children, lat, lng }) {
     socket.on('connect', () => {});
 
     const positionWatch = Location.watchPositionAsync(
-      { distanceInterval: 1, timeInterval: 2, accuracy: 6 },
+      { distanceInterval: 10, timeInterval: 50, accuracy: 6 },
       ({ coords }) => {
-        console.log('changed', coords)
         socket.emit('locationChange', { data: coords });
 
         setUserLocation(coords);
@@ -66,8 +67,7 @@ export default function AutoCenterMap({ children, lat, lng }) {
           latitude: userLocation.latitude,
           longitude: userLocation.longitude,
         }}
-        style={{
-        }}
+        style={{}}
         key={1}
         image={require('../../assets/icons/delivery.png')}
       />
@@ -78,8 +78,5 @@ export default function AutoCenterMap({ children, lat, lng }) {
 const styles = StyleSheet.create({
   mapStyle: {
     ...Layout.window,
-  },
-  pulse: {
-    // borderRadius: Dimensions.get('window').width / 2
   },
 });

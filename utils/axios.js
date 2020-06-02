@@ -5,7 +5,7 @@ import ENV from '../constants/env';
 import { AsyncStorage } from "react-native";
 
 // This variable decides whether the error should console log
-const DEBUG = process.env.NODE_ENV === 'development';
+const DEBUG = __DEV__;
 
 // later on we will populate this object with the auth token and the user data
 var deviceData = null;
@@ -78,7 +78,6 @@ export const interceptAuthenticationFlow = (axiosInstance) => {
       return response;
     },
     (error) => {
-      console.log(1, error)
         if (error.response && error.response.status === 401) {
             return Promise.reject(new Error('Not authorized'));
         }

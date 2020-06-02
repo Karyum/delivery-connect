@@ -15,8 +15,8 @@ export default function ManagerMap({ children, lat, lng }) {
       <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.mapStyle}
-        maxZoomLevel={18}
-        minZoomLevel={15}
+        maxZoomLevel={22}
+        minZoomLevel={10}
         customMapStyle={mapStyle}
         region={{
           //   latitude: 32.8237073,

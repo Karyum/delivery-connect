@@ -21,7 +21,7 @@ export default function DeliveryMapView() {
         if (status !== 'granted') {
           setErrorMsg('Permission to access location was denied');
         }
-        console.log(status);
+
         let location = await Location.getCurrentPositionAsync({});
 
         setUserLocation(location.coords);

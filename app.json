@@ -29,6 +29,7 @@
       "permissions": [
         "ACCESS_FINE_LOCATION"
       ]
-    }
+    },
+    "description": ""
   }
 }

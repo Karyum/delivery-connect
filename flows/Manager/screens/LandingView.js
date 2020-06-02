@@ -1,10 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button, AsyncStorage } from 'react-native';
 import BigButton from '../../../components/BigButton';
 import Colors from '../../../constants/Colors';
 
 export default function ManagerLanding({ navigation }) {
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome business manager</Text>
@@ -12,6 +11,8 @@ export default function ManagerLanding({ navigation }) {
         onPress={() => navigation.push('ManagerMapView')}
         borderColor={Colors.mainManagerColor}
       />
+      <Button title="Clear cache" onPress={() => AsyncStorage.clear()} />
+      <Button title="Refresh" onPress={() => global.__r.Refresh.performFullRefresh()} />
     </View>
   );
 }

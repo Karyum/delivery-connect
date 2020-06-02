@@ -1,15 +1,16 @@
 import React from 'react';
+import { Text } from 'react-native';
 import { Marker } from 'react-native-maps';
 import ENV from '../../../constants/env';
 
 const io = require('socket.io-client');
 
-export default function DeliveryMarkers({ coords }) {
+export default function DeliveryMarkers() {
   const [connected, setConnected] = React.useState(false);
   const [locationState, setLocationState] = React.useState({
     current: {
-      latitude: coords.latitude,
-      longitude: coords.longitude,
+      longitude: 34.981582,
+      latitude: 32.821673,
     },
     past: {
       longitude: 34.981582,
@@ -47,7 +48,7 @@ export default function DeliveryMarkers({ coords }) {
   }
 
   React.useEffect(() => {
-    animatedMove(0.5);
+    animatedMove(0);
   }, [locationState]);
 
   React.useEffect(() => {
@@ -61,12 +62,26 @@ export default function DeliveryMarkers({ coords }) {
     });
 
     socket.on('connect', function (test) {
-      // setConnected(true);
-      console.log('test', this.on);
+      setConnected(true);
+      // console.log('test', this.on);
     });
-    socket.on('mario', (data) => {
-      console.log('mario', data);
-      // if ()
+
+    socket.on('joinedRoom', (data) => {
+      if (data) {
+        setLocationState((prevState) => ({
+          current: {
+            latitude: data.latitude,
+            longitude: data.longitude,
+          },
+          past: {
+            latitude: prevState.current.latitude,
+            longitude: prevState.current.longitude,
+          },
+        }));
+      }
+    });
+
+    socket.on('updateLocation', (data) => {
       setLocationState((prevState) => ({
         current: {
           latitude: data.latitude,
@@ -81,6 +96,10 @@ export default function DeliveryMarkers({ coords }) {
 
     return () => socket.disconnect();
   }, []);
+
+  // if (!connected) {
+  //   return <Text>Oh no</Text>;
+  // }
 
   return (
     <Marker
